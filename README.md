@@ -1,3 +1,5 @@
-### C Web Server
+# C Web Server
 
-![[todo.md]]
+## TODO list
+- [ ] handle input on the client side
+- [ ] do authentication
