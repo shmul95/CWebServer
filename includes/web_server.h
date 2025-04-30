@@ -19,6 +19,6 @@ void server_destroy(server_t server);
 void server_run(server_t server);
 void server_print(const server_t server);
 
-void send_html(int fd, const char *html);
+void send_html(int fd, const char *html, ...);
 
 #endif /* WEB_SERVER_H_ */
