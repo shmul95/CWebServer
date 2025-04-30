@@ -21,7 +21,7 @@ static void server_handle_connection(server_t *server)
 
     if (client_fd == -1)
         eprintf(84, "accept");
-    send_html(client_fd, "Hello, %s!", "Samuel");
+    send_html(client_fd, "Hello, %s!", "Dianashkhenaz");
     server->pfds[server->nfds].fd = client_fd;
     server->pfds[server->nfds].events = POLLIN;
     server->nfds++;
