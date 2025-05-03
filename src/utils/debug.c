@@ -7,14 +7,18 @@
 
 #include "web_server.h"
 
-void pdebug(const char *format, ...)
+void pdebug(
+    const char *file, const int line,
+    const char *format, ...
+)
 {
     va_list ap;
 
     if (!DO_DEBUG)
         return;
     va_start(ap, format);
-    printf("Debug: ");
+    fprintf(stderr, "Debug: %s:%d: ", file, line);
     vfprintf(stderr, format, ap);
+    fprintf(stderr, "\n");
     va_end(ap);
 }
