@@ -20,6 +20,10 @@ SRC 	= 	$(SRC_DIR)/main.c \
 			$(SRC_DIR)/parse_http.c \
 			$(SRC_DIR)/utils/error.c \
 			$(SRC_DIR)/utils/debug.c \
+			$(SRC_DIR)/guards/guards_map.c \
+			$(SRC_DIR)/guards/cond/otherwise.c \
+			$(SRC_DIR)/guards/exec/send_html.c \
+			$(SRC_DIR)/guards/exec/show_path.c \
 
 OBJ = $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 

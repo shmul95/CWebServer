@@ -7,7 +7,7 @@
 
 #include "web_server.h"
 
-static int wrap_in_html(int fd, const char *html)
+static int wrap_in_http(int fd, const char *html)
 {
     const char *header = "HTTP/1.1 200 OK\r\n"
         "Content-Type: text/html\r\n"
@@ -30,11 +30,12 @@ void send_http(int fd, const char *html, ...)
     va_list args;
     char buffer[BUFFER_SIZE];
 
+    debug_str(html);
     if (fd < 0 || html == NULL)
         eprintf(84, "Invalid arguments to send_http");
     va_start(args, html);
     vsprintf(buffer, html, args);
     va_end(args);
-    if (wrap_in_html(fd, buffer) == 1)
+    if (wrap_in_http(fd, buffer) == 1)
         eprintf(84, "Couldn't send_http");
 }

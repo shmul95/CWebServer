@@ -21,7 +21,6 @@ static void server_handle_connection(server_t *server)
 
     if (client_fd == -1)
         eprintf(84, "accept");
-    send_http(client_fd, "Hello, %s!", "Samuel");
     server->pfds[server->nfds].fd = client_fd;
     server->pfds[server->nfds].events = POLLIN;
     server->nfds++;
@@ -38,8 +37,7 @@ static void server_handle_read(server_t *server, const nfds_t i)
         server->pfds[i].fd = -1;
         server->nfds--;
     } else {
-        debug_void(parse_http_request, &request, buffer);
-        debug_void(print_http_request, request, false);
+        debug_void(handle_guards_map, server->pfds[i].fd, &request, server);
     }
 }
 

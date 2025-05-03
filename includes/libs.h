@@ -14,6 +14,7 @@
     #include <stdbool.h>
     #include <signal.h>
     #include <stdarg.h>
+    #include <fcntl.h>
     #include <netinet/in.h>
     #include <arpa/inet.h>
     #include <poll.h>

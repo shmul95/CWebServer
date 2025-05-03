@@ -9,6 +9,7 @@
     #define WEB_SERVER_H_
     #include "libs.h"
     #include "struct.h"
+    #include "guards.h"
     #include "const.h"
     #include "debug.h"
 
