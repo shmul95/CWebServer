@@ -64,7 +64,8 @@ bool parse_http_request(http_request_t *request, char *buffer)
         return false;
     if (!parse_http_request_line(&request->request_line, request_line))
         return false;
-    request->header_count = parse_http_headers(request->headers, strtok(NULL, ""));
+    request->header_count = parse_http_headers(
+        request->headers, strtok(NULL, ""));
     if (request->header_count < 0)
         return false;
     return true;
