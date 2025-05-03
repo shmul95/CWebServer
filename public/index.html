@@ -6,6 +6,18 @@
     <title>CWebServer</title>
 </head>
 <body>
-    Bondour !
+    <h1>Welcome to CWebServer</h1>
+    <p>This is a simple web server built with C.</p>
+    <p>Feel free to explore the code and learn how it works!</p>
+    <p>Current time: <span id="time"></span></p>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('time').textContent = now.toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
 </body>
 </html>
