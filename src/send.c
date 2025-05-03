@@ -25,18 +25,16 @@ static int wrap_in_html(int fd, const char *html)
     return status;
 }
 
-void send_html(int fd, const char *html, ...)
+void send_http(int fd, const char *html, ...)
 {
     va_list args;
     char buffer[BUFFER_SIZE];
 
-    if (fd < 0 || html == NULL) {
-        eprintf(84, "Invalid arguments to send_html");
-        return;
-    }
+    if (fd < 0 || html == NULL)
+        eprintf(84, "Invalid arguments to send_http");
     va_start(args, html);
     vsprintf(buffer, html, args);
     va_end(args);
     if (wrap_in_html(fd, buffer) == 1)
-        eprintf(84, "send_html");
+        eprintf(84, "Couldn't send_http");
 }

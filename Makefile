@@ -8,7 +8,7 @@
 .SILENT: all clean fclean re
 
 CC = @gcc
-CFLAGS = -I./includes -Wall -Wextra
+CFLAGS = -I./includes -Wall -Wextra -g
 
 SRC_DIR = src
 OBJ_DIR = build
@@ -17,6 +17,7 @@ SRC 	= 	$(SRC_DIR)/main.c \
 			$(SRC_DIR)/server.c \
 			$(SRC_DIR)/server_run.c \
 			$(SRC_DIR)/send.c \
+			$(SRC_DIR)/parse_http.c \
 			$(SRC_DIR)/utils/error.c \
 			$(SRC_DIR)/utils/debug.c \
 
