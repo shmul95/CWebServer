@@ -37,7 +37,8 @@ static void server_handle_read(server_t *server, const nfds_t i)
         server->pfds[i].fd = -1;
         server->nfds--;
     } else {
-        debug_void(handle_guards_map, server->pfds[i].fd, &request, server);
+        parse_http_request(&request, buffer);
+        handle_guards_map(server->pfds[i].fd, &request, server);
     }
 }
 
@@ -56,7 +57,7 @@ static void server_handle_client(server_t *server, const nfds_t i)
         if (server->pfds[i].fd == server->sfd)
             server_handle_connection(server);
         else
-            debug_void(server_handle_read, server, i);
+            server_handle_read(server, i);
     }
     if (revents & POLLHUP || revents & POLLERR)
     server_disconnection(server, i);
@@ -72,6 +73,6 @@ void server_run(server_t server)
         if (ready == -1)
             eprintf(84, "poll");
         for (nfds_t i = 0; i < server.nfds; i++)
-            debug_void(server_handle_client, &server, i);
+            server_handle_client(&server, i);
     }
 }

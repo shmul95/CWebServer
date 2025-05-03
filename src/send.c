@@ -30,7 +30,6 @@ void send_http(int fd, const char *html, ...)
     va_list args;
     char buffer[BUFFER_SIZE];
 
-    debug_str(html);
     if (fd < 0 || html == NULL)
         eprintf(84, "Invalid arguments to send_http");
     va_start(args, html);

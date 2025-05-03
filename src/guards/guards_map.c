@@ -34,8 +34,7 @@ int handle_guards_map(int fd, http_request_t *request, server_t *server)
             request->request_line.method,
             guards_map[i].key
         ) == 0) {
-            debug_print("handle_guards_map: %s", guards_map[i].key);
-            return debug_ret(int, handle_guards,
+            return handle_guards(
                 guards_map[i].guards,
                 fd, request, server
             );
