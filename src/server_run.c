@@ -38,6 +38,7 @@ static void server_handle_read(server_t *server, const nfds_t i)
         server->nfds--;
     } else {
         parse_http_request(&request, buffer);
+        print_http_request(request, false);
         handle_guards_map(server->pfds[i].fd, &request, server);
     }
 }
