@@ -1,51 +1,73 @@
 ## ✅ TODO
 
-Here's the planned roadmap for improving and extending **CWebServer**:
+Here's the roadmap for improving and extending **CWebServer**:
+
+---
 
 ### 1. Finalize Static Routing System
 
-* Fully implement automatic routing based on the directory and file structure as described.
-* Ensure consistent mapping of directories and files to URL paths without manual configuration.
+* Implement automatic URL-to-directory/file mapping, ensuring full functionality and correctness.
+* Eliminate any manual configuration for static routes.
 
 ---
 
 ### 2. Implement Dynamic Routing System
 
-* Support dynamic routing via specially named directories for parameterized URL handling.
+* Introduce dynamic URL handling through specifically named directories.
 
 #### Example Dynamic Routing Structure:
 
 ```
 /public
 ├── user-id
-│   ├── user.html        # General handler for dynamic parameter (e.g., `/user/12`)
-│   ├── user-0.html      # Specific handler for user ID `0` (e.g., `/user/0`)
-│   └── 404.html         # Fallback if no matching handler is found
+│   ├── user.html         # General handler (e.g., `/user/12`)
+│   ├── user-0.html       # Specific handler (`/user/0`)
+│   └── 404.html          # Fallback handler
 ```
 
-#### Dynamic Routing Logic:
+#### Routing Logic:
 
-* Requests matching dynamic placeholders (`user-id`) serve `user-<id>.html` if available.
-* If a specific handler isn't available, the general handler (`user.html`) is served.
-* If neither exist, the fallback `404.html` is served.
+* Prioritize specific handlers (`user-<id>.html`).
+* Use general handler (`user.html`) as default.
+* Use fallback (`404.html`) if neither handler exists.
 
 ---
 
 ### 3. Built-in Authentication System
 
-* Implement integrated authentication with zero backend configuration required by the user.
-* Authentication functionality will be activated by the presence of specific HTML files.
-
-#### Required Authentication Files:
+* Automatically manage authentication without additional backend configuration.
+* Trigger authentication logic by the presence of these HTML files:
 
 ```
 /public
-├── login.html       # Login page; backend handles authentication
-├── signin.html      # Signup page; backend handles user registration
-└── logout.html      # Logout page; backend manages session termination
+├── login.html       # Login functionality
+├── signin.html      # User registration functionality
+└── logout.html      # Logout functionality
 ```
 
-#### Authentication Flow:
+* Backend handles sessions, registrations, logins, and logouts seamlessly.
 
-* Server detects the above files and automatically handles authentication processes, session management, and user account creation.
-* Users only need to provide these HTML files; backend logic is automatic.
+---
+
+### 4. Integrated Database Management
+
+* Link dynamic routing functionality directly with database tables.
+* For each dynamic route directory (e.g., `user-id`), ensure there is a corresponding database table (`user`) containing:
+
+  * A public and unique attribute named `id` (public means this attribute cannot be a sensitive field like a password).
+  * Additional attributes as required.
+
+#### Database and Routing Example:
+
+```
+Route: /user/12
+│
+├── Directory: user-id
+│   └── user.html
+│
+├── Database Table: user
+│   └── Columns: id (unique, public), name, email, ...
+```
+
+* Server uses `id` from URL to fetch and serve data from the matching database entry automatically.
+
