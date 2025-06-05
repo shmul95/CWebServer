@@ -42,6 +42,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 
 clean:
 	@rm -f $(OBJ)
+	@rm -r $(OBJ_DIR)
 	@echo "Cleaned up object files."
 
 fclean: clean
